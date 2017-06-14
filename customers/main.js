@@ -13,22 +13,29 @@
       response.json().then(function(data) {
         console.log("Here is the data:", data);
         for (var i = 0; i < data.results.length; i++) {
+          let paragraph = document.createElement("p");
+          let images = document.createElement("img");
+
           let info = data.results[i];
-          console.log(info);
+          console.log(info.cell);
           let customers = document.querySelector(".customers");
-          customers.innerHTML = data.results;
+          images.src = info.picture.large;
+          paragraph.innerHTML += " " + info.name.first;
+          paragraph.innerHTML += " " + info.name.last;
+          paragraph.innerHTML += " " + info.email;
+          paragraph.innerHTML += " " + info.location.street;
+          paragraph.innerHTML += " " + info.location.city;
+          paragraph.innerHTML += " " + info.location.state;
+          paragraph.innerHTML += " " + info.location.postcode;
+          paragraph.innerHTML += " " + info.cell;
+          customers.appendChild(images);
+          customers.appendChild(paragraph);
         }
 
       });
 
     });
-    // function getInfo(data) {
-    //   for (var i = 0; i < data.length; i++) {
-    //     let info = data[i];
-    //     let customers = document.querySelector(".customers");
-    //     customers.innerHTML = info;
-    //   }
-    // }
+
   }
 
 )();
